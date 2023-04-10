@@ -1,12 +1,19 @@
-const income = prompt("Введите заработок:");
-let tax;
+const income = +prompt("Введите заработок:");
+let tax = 0;
+let ostatok = income;
 
-if (income <= 15000) {
-  tax = income * 0.13;
-} else if (income > 15000 && income <= 50000) {
-  tax = 15000 * 0.13 + (income - 15000) * 0.2;
-} else {
-  tax = 15000 * 0.13 + 35000 * 0.2 + (income - 50000) * 0.3;
+if (ostatok > 50000) {
+  tax += (ostatok - 50000) * 0.3;
+  ostatok = 50000;
 }
 
-console.log("Налог: " + tax);
+if (ostatok > 15000 && ostatok <= 50000) {
+  tax += (ostatok - 15000) * 0.2;
+  ostatok = 15000;
+}
+
+if (ostatok > 0) {
+  tax += income * 0.13;
+}
+
+console.log(`Налог: ${tax}`);

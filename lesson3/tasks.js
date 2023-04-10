@@ -26,8 +26,10 @@ if (sumExam < 265) {
 
 const money = prompt("Сколько денег хотите снять?");
 
-if (money < 100) {
-  console.log("Минимальная сумма 100р");
-} else if (money >= 100) {
-  console.log("Успешно!");
+if (Number.isNaN(money)) {
+  console.log("Введите корректные данные");
+} else if (money % 100 === 0) {
+  console.log(`Вот ваши деньги ${money}`);
+} else {
+  console.log("Такая сумма не может быть выдана");
 }
