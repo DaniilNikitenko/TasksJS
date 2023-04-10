@@ -1,13 +1,13 @@
 const nameProduct = prompt("Введите название товара"),
-  countProduct = prompt("Количество товара"),
+  countProduct = +prompt("Количество товара"),
   categoryProduct = prompt("Категория товара"),
-  priceProduct = prompt("Цена товара");
+  priceProduct = +prompt("Цена товара");
 
 console.log(
   typeof nameProduct,
-  typeof +countProduct,
+  typeof countProduct,
   typeof categoryProduct,
-  typeof +priceProduct
+  typeof priceProduct
 );
 console.log(priceProduct * countProduct);
 console.log(
