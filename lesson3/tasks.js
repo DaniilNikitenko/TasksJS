@@ -9,10 +9,10 @@ if (Math.round(rain) === 1) {
 
 // Третья задача
 
-const firstExam = prompt("Введите кол-во баллов по математике: "),
-  thirdExam = prompt("Введите кол-во баллов по русскому языку: "),
-  secondExam = prompt("Введите кол-во баллов по информатике: "),
-  sumExam = +firstExam + +thirdExam + +secondExam;
+const firstExam = +prompt("Введите кол-во баллов по математике: "),
+  thirdExam = +prompt("Введите кол-во баллов по русскому языку: "),
+  secondExam = +prompt("Введите кол-во баллов по информатике: "),
+  sumExam = firstExam + thirdExam + secondExam;
 
 console.log(sumExam);
 
