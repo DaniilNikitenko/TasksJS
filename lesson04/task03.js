@@ -20,4 +20,4 @@ const calculate = (sum, count, promo) => {
   return Math.round(resultSum);
 };
 
-console.log(calculate(30000, 11, "METHED"));
+console.log(calculate(32000, 11, "METHED"));

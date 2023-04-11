@@ -3,6 +3,6 @@ const getConverter = (money) => {
   resultMoney *= 73 / 1.2;
   return Math.round(resultMoney);
 };
-
-const result = getConverter(200);
+const user = +prompt("Введите сумму в евро: ");
+const result = getConverter(user);
 console.log(`${result} рублей`);

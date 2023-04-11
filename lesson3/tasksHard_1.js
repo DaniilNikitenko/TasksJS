@@ -1,16 +1,11 @@
 const income = +prompt("Введите заработок:");
-let tax = 0;
 
-if (income > 50000) {
-  tax += income * 0.3;
+if (Number.isNaN(income) || income < 0) {
+  console.log(`Введите корректные данные!`);
+} else if (income < 15000) {
+  console.log(`Налог 13%: ${income * 0.13}`);
+} else if (income < 50000) {
+  console.log(`Налог 20%: ${income * 0.2}`);
+} else {
+  console.log(`Налог 30%: ${income * 0.3}`);
 }
-
-if (income > 15000 && income <= 50000) {
-  tax += income * 0.2;
-}
-
-if (income > 0 && income <= 15000) {
-  tax += income * 0.13;
-}
-
-console.log(`Налог: ${tax}`);
