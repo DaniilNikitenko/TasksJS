@@ -1,5 +1,5 @@
 const getMin = (a, b) => {
-  return (a + b - Math.abs(a - b)) / 2;
+  return (a < b) * a + (a > b) * b;
 };
 
 console.log(getMin(54, 144));

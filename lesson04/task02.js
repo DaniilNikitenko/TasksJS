@@ -1,7 +1,5 @@
 const getString = (str) => {
-  let resultString = str;
-  const newStr =
-    resultString[0].toUpperCase() + resultString.slice(1).toLowerCase();
-  return newStr;
+  str = str.trim().toLowerCase();
+  return str[0].toUpperCase() + str.slice(1);
 };
-console.log(getString("привет Мир"));
+console.log(getString(" привет Мир"));

@@ -1,19 +1,18 @@
 const calculate = (sum, count, promo) => {
   let resultSum = sum;
-  let resultCount = count;
-  let resultPromo = promo;
-  if (resultCount > 10) {
+
+  if (count > 10) {
     resultSum *= 0.97;
   }
   if (resultSum > 30000) {
     resultSum *= 0.85;
   }
 
-  if (resultPromo === "METHED") {
+  if (promo === "METHED") {
     resultSum *= 0.9;
   }
 
-  if (resultPromo === "G3H2Z1" && resultSum > 2000) {
+  if (promo === "G3H2Z1" && resultSum > 2000) {
     resultSum -= 500;
   }
 

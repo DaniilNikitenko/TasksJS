@@ -1,18 +1,14 @@
 const getNod = (a, b) => {
-  let ostatok = 0;
-  let max = a > b ? a : b;
-  let min = b < a ? b : a;
-  let bool = true;
-  while (bool) {
-    ostatok = max % min;
-    if (max % min === 0) {
-      bool = false;
-      ostatok = min;
-    }
-    max = min;
-    min = ostatok;
+  let ostatok = 1;
+  b > a && ([a, b] = [b, a]);
+
+  while (ostatok) {
+    ostatok = a % b;
+    a = b;
+    b = ostatok;
   }
-  return ostatok;
+
+  return a;
 };
 
-console.log(getNod(84, 90));
+console.log(getNod(144, 12));

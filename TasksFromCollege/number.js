@@ -1,5 +1,8 @@
-function numberToText(num) {
-  var ones = [
+const numberToText = (num) => {
+  let resultNum = num;
+
+  //Массив с числами от 1 до 9
+  const ones = [
     "",
     "один",
     "два",
@@ -11,7 +14,8 @@ function numberToText(num) {
     "восемь",
     "девять",
   ];
-  var teens = [
+  //Массив с числами от 10 до 19
+  const teens = [
     "десять",
     "одиннадцать",
     "двенадцать",
@@ -23,7 +27,8 @@ function numberToText(num) {
     "восемнадцать",
     "девятнадцать",
   ];
-  var tens = [
+  //Массив с числами от 20 до 90
+  const tens = [
     "",
     "",
     "двадцать",
@@ -35,7 +40,9 @@ function numberToText(num) {
     "восемьдесят",
     "девяносто",
   ];
-  var hundreds = [
+
+  //Массив с сотнями
+  const hundreds = [
     "",
     "сто",
     "двести",
@@ -47,52 +54,54 @@ function numberToText(num) {
     "восемьсот",
     "девятьсот",
   ];
-  var thousands = ["", "тысяча", "тысячи", "тысяч"];
-
-  if (num == 0) {
+  //Массив с тысячами
+  const thousands = ["", "тысяча", "тысячи", "тысяч"];
+  //Если введенное число 0
+  if (resultNum === 0) {
     return "ноль";
   }
 
-  var text = "";
-
-  if (num < 0) {
+  let text = "";
+  //Если минус
+  if (resultNum < 0) {
     text += "минус ";
-    num = Math.abs(num);
+    resultNum = Math.abs(resultNum);
   }
 
-  if (num < 10) {
-    text += ones[num];
-  } else if (num < 20) {
-    text += teens[num - 10];
-  } else if (num < 100) {
-    text += tens[Math.floor(num / 10)] + " " + ones[num % 10];
-  } else if (num < 1000) {
-    text += hundreds[Math.floor(num / 100)] + " ";
-    if (num % 100 >= 10 && num % 100 < 20) {
-      text += teens[num % 10];
+  if (resultNum < 10) {
+    text += ones[resultNum];
+  } else if (resultNum < 20) {
+    text += teens[resultNum - 10];
+  } else if (resultNum < 100) {
+    text += tens[Math.floor(resultNum / 10)] + " " + ones[resultNum % 10];
+  } else if (resultNum < 1000) {
+    text += hundreds[Math.floor(resultNum / 100)] + " ";
+    if (resultNum % 100 >= 10 && resultNum % 100 < 20) {
+      text += teens[resultNum % 10];
     } else {
-      text += tens[Math.floor((num % 100) / 10)] + " " + ones[num % 10];
+      text +=
+        tens[Math.floor((resultNum % 100) / 10)] + " " + ones[resultNum % 10];
     }
   } else {
-    var count = 0;
-    while (num > 0) {
-      var remainder = num % 1000;
+    let count = 0;
+    while (resultNum > 0) {
+      const remainder = resultNum % 1000;
       if (remainder > 0) {
-        var str = numberToText(remainder);
+        const str = numberToText(remainder);
         if (count == 0) {
           text = str;
         } else {
           text = str + " " + thousands[count] + " " + text;
         }
       }
-      num = Math.floor(num / 1000);
+      resultNum = Math.floor(resultNum / 1000);
       count++;
     }
   }
 
   return text.trim();
-}
+};
 
-for (let i = 0; i < 12000; i++) {
-  console.log(numberToText(i));
-}
+let user = +prompt("Введите число");
+
+alert(numberToText(user));
