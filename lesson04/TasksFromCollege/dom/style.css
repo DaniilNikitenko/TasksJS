@@ -1,0 +1,16 @@
+body{
+    padding-top: 50px;
+}
+
+.block{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+td{
+    font-size: 30px;
+    border: 1px solid #000;
+}
+table{
+    border-collapse: collapse;
+}
