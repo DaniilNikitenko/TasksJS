@@ -1,10 +1,3 @@
-const filter = (all, failed) => {
-  for (const i of failed) {
-    all.splice(all.indexOf(i), 1);
-  }
-  return all;
-};
-
 const allStudents = [
   "Иванов",
   "Петров",
@@ -16,5 +9,13 @@ const allStudents = [
 ];
 
 const failedStudents = ["Сидоров", "Смирнов", "Попов"];
+
+const filter = (all, failed) => {
+  const resultAll = all;
+  for (const i of failed) {
+    resultAll.splice(resultAll.indexOf(i), 1);
+  }
+  return resultAll;
+};
 
 console.log(filter(allStudents, failedStudents));

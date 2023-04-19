@@ -1,13 +1,3 @@
-const getAveragePriceGoods = (cashBox) => {
-  let count = 0;
-  let price = 0;
-  for (let i = 0; i < cashBox.length; i++) {
-    count += cashBox[i][0];
-    price += cashBox[i][1];
-  }
-  return Math.floor(price / count);
-};
-
 const allCashbox = [
   [12, 4500],
   [7, 3210],
@@ -18,5 +8,14 @@ const allCashbox = [
   [6, 13900],
   [1, 370],
 ];
+
+const getAveragePriceGoods = (cashBox) => {
+  const totalCount = cashBox.reduce(
+    (sum, current) => [sum[0] + current[0], sum[1] + current[1]],
+    [0, 0]
+  );
+  const result = totalCount.reduce((sum, current) => Math.floor(current / sum));
+  return result;
+};
 
 console.log(getAveragePriceGoods(allCashbox));
