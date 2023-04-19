@@ -28,7 +28,7 @@ while (user !== bot && usersAttempts < allAttempts) {
 
   user = Number(user);
 
-  if ( Number.isNaN(user)) {
+  if (Number.isNaN(user)) {
     alert("Введите число!");
     continue;
   }
