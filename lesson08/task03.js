@@ -24,4 +24,4 @@ const generator = (count, n, m, parity = "") => {
   return allNumbers;
 };
 
-console.log(generator(100, 100, 5, "odd"));
+console.log(generator(100, 100, 5, "even"));
