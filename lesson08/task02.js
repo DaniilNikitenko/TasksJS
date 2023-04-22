@@ -1,12 +1,11 @@
 const generator = (count, n, m) => {
   const allNumbers = [];
-  if (n < m && n > 0 && m > 0) {
-    for (let i = 0; i < count; i++) {
-      allNumbers.push(Math.floor(n + Math.random() * (m - n)));
-    }
-    return allNumbers;
+  const range = Math.abs(n - m) + 1;
+  const min = Math.min(n, m);
+  for (let i = 0; i < count; i++) {
+    allNumbers.push(Math.floor(Math.random() * range) + min);
   }
-  return "Введите корректные значения";
+  return allNumbers;
 };
 
-console.log(generator(100, 10, 30));
+console.log(generator(100, -5, 20));

@@ -1,20 +1,27 @@
-const generator = (count, n, m, parity) => {
+const generator = (count, n, m, parity = "") => {
   const allNumbers = [];
-  if (n < m && n > 0 && m > 0) {
-    for (let i = 0; i < count; i++) {
-      allNumbers.push(Math.floor(n + Math.random() * (m - n)));
-    }
-    if (parity === "even") {
-      const evenNumbers = allNumbers.filter((even) => even % 2 === 0);
-      return evenNumbers;
+  const range = Math.abs(n - m);
+  const min = Math.min(n, m);
+  for (let i = 0; i < count; ) {
+    randomNumber = Math.floor(Math.random() * range) + min;
+
+    if (parity === "even" && randomNumber % 2 === 0) {
+      allNumbers.push(randomNumber);
+      i++;
     }
 
-    if (parity === "odd") {
-      const oddNumbers = allNumbers.filter((odd) => odd % 2 !== 0);
-      return oddNumbers;
+    if (parity === "odd" && randomNumber % 2 !== 0) {
+      allNumbers.push(randomNumber);
+      i++;
+    }
+
+    if (parity !== "even" && parity !== "odd") {
+      allNumbers.push(randomNumber);
+      i++;
     }
   }
-  return "Введите корректные значения";
+
+  return allNumbers;
 };
 
-console.log(generator(100, 10, 30, "odd"));
+console.log(generator(100, 100, 5, "odd"));

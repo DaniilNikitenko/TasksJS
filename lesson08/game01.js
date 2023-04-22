@@ -1,31 +1,32 @@
-let bot = Math.floor(Math.random() * 100);
-let user = 0;
-while (true) {
-  user = prompt("Отгадай число");
+let bot = Math.floor(Math.random() * 100) + 1;
+let user;
 
-  if (user === "Отмена") {
-    alert("Выход из игры");
-    break;
+while (user !== bot) {
+  user = prompt("Угадай число от 1 до 100");
+
+  if (user === null) break;
+
+  if (user < 1 || user > 100) {
+    alert("Введите число от 1 до 100!");
+    continue;
   }
 
-  user = Number(user);
+  user = +user;
 
-  if (Number.isNaN(user)) {
-    alert("Введи число");
-  }
-
-  if (user === bot) {
-    alert("Правильно");
-    break;
-  }
-
-  if (user > bot) {
-    alert("Меньше");
-  }
-
-  if (user < bot) {
-    alert("Больше");
+  switch (true) {
+    case Number.isNaN(user):
+      alert("Введите число");
+      break;
+    case user > bot:
+      alert("Меньше!");
+      break;
+    case user < bot:
+      alert("Больше!");
+      break;
+    case user === bot:
+      alert("Правильно");
+      break;
   }
 }
 
-alert(`Игра закончена,вот загаданное число ${bot}`);
+alert(`Игра окончена, вот загаданное число ${bot}`);

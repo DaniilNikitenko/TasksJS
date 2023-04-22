@@ -1,14 +1,14 @@
-const leapYears = (n, m) => {
-  let leapYearsArr = [];
-  if (n > 0 && m > 0) {
-    for (let year = n; year <= m; year++) {
-      if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-        leapYearsArr.push(year);
-      }
+const generateLeapYears = (n, m) => {
+  const min = Math.min(n, m);
+  const max = Math.max(n, m);
+  const leapYears = [];
+  const startYear = min < 0 ? 0 : min;
+  for (let year = startYear; year <= max; year++) {
+    if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+      leapYears.push(year);
     }
-    return leapYearsArr;
   }
-  return "Число меньше 0";
+  return leapYears;
 };
 
-console.log(leapYears(1300, 2024));
+console.log(generateLeapYears(1524, 1300));
