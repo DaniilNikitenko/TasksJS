@@ -1,23 +1,27 @@
+/* eslint-disable no-tabs */
+'use strict';
+
 let user;
 
 const cart = {
   items: [],
+  count: 0,
+
   get totalPrice() {
     return `${this.calculateItemPrice()}`;
   },
-  count: 0,
-
   add(name, price, count = 1) {
-    this.items.push({ name, price, count: count || 1 });
+    this.items.push({name, price, count: count || 1});
     this.increaseCount(1);
   },
   increaseCount(num) {
     return (this.count += num);
   },
   calculateItemPrice() {
-    const sum = this.items.reduce((acc, item) => {
-      return acc + item.price * item.count;
-    }, 0);
+    const sum = this.items.reduce(
+        (acc, item) => acc + item.price * item.count,
+        0,
+    );
     return sum;
   },
   clear() {
@@ -38,28 +42,28 @@ while (user !== null) {
 	3.Очистить корзину
 	4.Распечатать корзину`);
 
-  if (user === "1") {
+  if (user === '1') {
     console.log(cart.totalPrice);
   }
 
-  if (user === "2") {
-    let name = prompt("Введите название товара");
-    let price = +prompt("Введите цену товара");
-    let count = +prompt("Введите количества товара товара");
+  if (user === '2') {
+    const name = prompt('Введите название товара');
+    const price = +prompt('Введите цену товара');
+    const count = +prompt('Введите количества товара товара');
     if (Number.isNaN(price) || Number.isNaN(count) || price <= 0 || count < 0) {
-      console.log("Введите корректные значения!");
+      console.log('Введите корректные значения!');
       continue;
     }
 
     cart.add(name, price, count);
   }
 
-  if (user === "3") {
-    console.log("Корзина очищена");
+  if (user === '3') {
+    console.log('Корзина очищена');
     cart.clear();
   }
 
-  if (user === "4") {
+  if (user === '4') {
     cart.print();
   }
 }
