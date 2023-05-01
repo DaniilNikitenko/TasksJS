@@ -1,77 +1,79 @@
 'use strict';
 
-let usersArr = [];
+let user = 0;
+let usersAttempts = 0;
+const usersCount = [];
+const usersArr = [];
 let usersNum;
-for (let i = 0; i < 2;) {
+let count = 0;
+
+const minAndMax = () => {
   usersNum = prompt('Введите одно из чисел диапазона:');
+  count++;
 
   if (usersNum === null) {
-    usersArr = [];
-    break;
+    usersArr.length = 0;
+    return;
   }
 
-  usersNum = +usersNum;
-
-  if (Number.isNaN(usersNum)) {
+  if (Number.isNaN(+usersNum)) {
     alert('Введите число');
-    continue;
+    return minAndMax();
   }
 
   usersArr.push(usersNum);
-  i++;
-}
+  if (count >= 2) {
+    return usersArr;
+  }
+  return minAndMax();
+};
+
+minAndMax();
 
 const min = Math.min(...usersArr);
 const max = Math.max(...usersArr);
 
-const range = max - min + 1;
-const allAttempts = Math.floor(range * 0.3);
+const allAttempts = Math.floor((max - min + 1) * 0.3);
+const bot = Math.floor(Math.random() * (max - min + 1)) + min;
 
-const bot = Math.floor(Math.random() * range) + min;
-let user;
-let usersAttempts = 0;
-const usersCount = [];
-
-while (user !== bot && usersAttempts < allAttempts) {
+const game = () => {
   user = prompt(`Введите число от ${min} до ${max}:`);
-
-  if (user === null) {
-    console.log('Выход из игры');
-    break;
+  if (+user === bot || usersAttempts >= allAttempts || user === null) {
+    return user;
   }
-
-  if (user < min || user > max) {
-    alert('Введите число в диапазоне!');
-    continue;
-  }
-
-  user = +user;
-
   switch (true) {
-    case Number.isNaN(user):
-      alert('Введите число');
-      break;
-    case user > bot:
+    case isNaN(user):
+    case +user < min:
+    case +user > max:
+      alert('Введите Корректное число');
+      return game();
+    case +user > bot:
       alert('Меньше!');
       break;
-    case user < bot:
+    case +user < bot:
       alert('Больше!');
       break;
-    case user === bot:
+    case +user === bot:
       alert('Правильно');
       break;
   }
 
   if (usersCount.includes(user)) {
     alert('Это число вы уже вводили!');
-    continue;
+    return game();
   }
 
   usersCount.push(user);
   usersAttempts++;
+  return game();
+};
+
+if (usersArr.length === 2) {
+  game();
 }
 
-if (user === bot) {
+
+if (+user === bot) {
   alert(`Вы угадали число ${bot} за ${usersAttempts} попыток!`);
 } else if (usersAttempts === allAttempts) {
   alert(`Ваши попытки закончились, загаданное число было ${bot}.`);

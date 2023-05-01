@@ -5,9 +5,20 @@ let user;
 const cart = {
   items: [],
   count: 0,
+  discount: 0,
 
   get totalPrice() {
     return `${this.calculateItemPrice()}`;
+  },
+
+  set setDiscount(promocode) {
+    if (promocode === 'METHED') {
+      this.discount = 15;
+    }
+
+    if (promocode === 'NEWYEAR') {
+      this.discount = 21;
+    }
   },
   add(name, price, count = 1) {
     this.items.push({name, price, count: count || 1});
@@ -21,12 +32,12 @@ const cart = {
         (acc, item) => acc + item.price * item.count,
         0,
     );
-    return sum;
+    return sum - (sum * this.discount / 100);
   },
   clear() {
     this.items = [];
-    this.totalPrice = 0;
     this.count = 0;
+    this.discount = 0;
   },
   print() {
     console.log(JSON.stringify(this.items));
@@ -39,7 +50,8 @@ while (user !== null) {
 1.Получить общую стоимость корзины
 2.Добавить товар
 3.Очистить корзину
-4.Распечатать корзину`);
+4.Распечатать корзину
+5.Добавить промокод`);
 
   if (user === '1') {
     console.log(cart.totalPrice);
@@ -64,5 +76,17 @@ while (user !== null) {
 
   if (user === '4') {
     cart.print();
+  }
+
+  if (user === '5') {
+    const discount = prompt('Введите промокод');
+
+    if (discount === 'METHED') {
+      cart.setDiscount = discount;
+    }
+
+    if (discount === 'NEWYEAR') {
+      cart.setDiscount = discount;
+    }
   }
 }
