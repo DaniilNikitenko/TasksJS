@@ -32,7 +32,7 @@ const cart = {
         (acc, item) => acc + item.price * item.count,
         0,
     );
-    return sum - (sum * this.discount / 100);
+    return sum - (sum * this.discount) / 100;
   },
   clear() {
     this.items = [];
@@ -81,12 +81,10 @@ while (user !== null) {
   if (user === '5') {
     const discount = prompt('Введите промокод');
 
-    if (discount === 'METHED') {
+    if (discount === 'METHED' || discount === 'NEWYEAR') {
       cart.setDiscount = discount;
-    }
-
-    if (discount === 'NEWYEAR') {
-      cart.setDiscount = discount;
+    } else {
+      alert('Неверный промокод');
     }
   }
 }

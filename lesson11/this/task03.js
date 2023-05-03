@@ -1,27 +1,27 @@
 'use strict';
 
 const rectangle = {
-  width: 5,
-  height: 5,
+  _width: 5,
+  _height: 5,
 
   get perimetr() {
-    return `${(this.width + this.height) * 2}см`;
+    return `${(this._width + this._height) * 2}см`;
   },
 
   get area() {
-    return `${this.width * this.height}см`;
+    return `${this._width * this._height}см`;
   },
 
-  set widthNum(value) {
-    this.width = value;
+  set width(value) {
+    this._width = value;
   },
 
-  set heightNum(value) {
-    this.height = value;
+  set height(value) {
+    this._height = value;
   },
 };
 
-rectangle.widthNum = 4;
-rectangle.heightNum = 8;
+rectangle.width = 10;
+rectangle.height = 5;
 console.log(rectangle.perimetr);
 console.log(rectangle.area);

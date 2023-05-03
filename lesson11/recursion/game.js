@@ -1,47 +1,42 @@
 'use strict';
 
 let user = 0;
-let usersAttempts = 0;
+let usersAttempts = 1;
 const usersCount = [];
-const usersArr = [];
 let usersNum;
-let count = 0;
+let min;
+let max;
+let allAttempts;
+let bot;
 
-const minAndMax = () => {
+const minAndMax = (arr) => {
   usersNum = prompt('Введите одно из чисел диапазона:');
-  count++;
 
   if (usersNum === null) {
-    usersArr.length = 0;
-    return;
+    arr.length = 0;
+    return [];
   }
 
   if (Number.isNaN(+usersNum)) {
     alert('Введите число');
-    return minAndMax();
+    return minAndMax(arr);
   }
 
-  usersArr.push(usersNum);
-  if (count >= 2) {
-    return usersArr;
+  arr.push(usersNum);
+  if (arr.length >= 2) {
+    return arr;
   }
-  return minAndMax();
+  return minAndMax(arr);
 };
-
-minAndMax();
-
-const min = Math.min(...usersArr);
-const max = Math.max(...usersArr);
-
-const allAttempts = Math.floor((max - min + 1) * 0.3);
-const bot = Math.floor(Math.random() * (max - min + 1)) + min;
 
 const game = () => {
   user = prompt(`Введите число от ${min} до ${max}:`);
-  if (+user === bot || usersAttempts >= allAttempts || user === null) {
-    return user;
-  }
+
   switch (true) {
+    case +user === bot:
+    case usersAttempts >= allAttempts:
+    case user === null:
+      return user;
     case isNaN(user):
     case +user < min:
     case +user > max:
@@ -52,9 +47,6 @@ const game = () => {
       break;
     case +user < bot:
       alert('Больше!');
-      break;
-    case +user === bot:
-      alert('Правильно');
       break;
   }
 
@@ -68,10 +60,16 @@ const game = () => {
   return game();
 };
 
+const usersArr = minAndMax([]);
+
 if (usersArr.length === 2) {
+  min = Math.min(...usersArr);
+  max = Math.max(...usersArr);
+
+  allAttempts = Math.floor((max - min + 1) * 0.3);
+  bot = Math.floor(Math.random() * (max - min + 1)) + min;
   game();
 }
-
 
 if (+user === bot) {
   alert(`Вы угадали число ${bot} за ${usersAttempts} попыток!`);
