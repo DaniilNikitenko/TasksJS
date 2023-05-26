@@ -31,7 +31,6 @@ const minAndMax = (arr) => {
 
 const game = () => {
   user = prompt(`Введите число от ${min} до ${max}:`);
-
   switch (true) {
     case +user === bot:
     case usersAttempts >= allAttempts:
