@@ -19,6 +19,9 @@
       if (playerChoice === null) {
         const confirmExit = confirm('Вы действительно хотите выйти?');
         if (confirmExit) {
+          alert(`Результат: 
+Игрок - ${result.player},
+Компьютер - ${result.computer}`);
           return;
         }
       }
@@ -26,12 +29,11 @@
       const validChoices = FIGURES_RUS.filter((figure) =>
         figure.startsWith(playerChoice.toLowerCase()),
       );
-      if (validChoices.length === 0) {
+      if (playerChoice.length === 0) {
         alert('Некорректный выбор. Попробуйте еще раз.');
         start();
         return;
       }
-
       playerChoice = validChoices[0];
 
       if (!FIGURES_RUS.includes(playerChoice)) {
@@ -61,10 +63,11 @@
 Вы проиграли`);
           result.computer++;
       }
-
-      alert(`Счет: Игрок - ${result.player}, Компьютер - ${result.computer}`);
       const continuePlaying = confirm('Продолжить игру?');
       if (!continuePlaying) {
+        alert(`Результат: 
+Игрок - ${result.player},
+Компьютер - ${result.computer}`);
         return;
       } else {
         start();
@@ -72,5 +75,5 @@
     };
   };
 
-  window.RPS = game;
+  window.rps = game;
 })();
