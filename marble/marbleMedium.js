@@ -84,10 +84,9 @@ ${message}`,
       if (result.totalComputer > 0 && result.totalPlayer > 0) {
         const botGuess = getRandomIntInclusive(1, result.totalComputer);
         const playerChoice =
-          confirm(`Бот загадал число от 1 до ${result.totalComputer}.
-  Выберите "ОК", если число чётное, или "Отмена", если число нечётное.`);
+          confirm(`Число чётное?`);
         switch (true) {
-          case botGuess % 2 === (playerChoice ? 0 : 1):
+          case botGuess % 2 === playerChoice:
             alert('Вы не угадали!');
             result.totalPlayer = -botGuess;
             result.totalComputer = +botGuess;
