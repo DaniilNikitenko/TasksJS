@@ -28,9 +28,11 @@
     };
 
     const printWinner = (message) => {
+      const playerBalls = Math.max(result.totalPlayer, 0);
+      const computerBalls = Math.max(result.totalComputer, 0);
       alert(
-          `Игрок ${result.totalPlayer} шариков
-Бот ${result.totalComputer} шариков
+          `Игрок ${playerBalls} шариков
+Бот ${computerBalls} шариков
 ${message}`,
       );
     };

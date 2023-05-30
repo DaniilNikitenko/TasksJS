@@ -104,7 +104,7 @@ ${message}`,
         if (playAgain) {
           result.default();
           firstPlayer = gameRps();
-          start();
+          return start();
         } else {
           return;
         }
