@@ -25,6 +25,12 @@
       set totalComputer(value) {
         this._computer += value;
       },
+      set player(value) {
+        this._player = 10;
+      },
+      set computer(value) {
+        this._computer = 10;
+      },
     };
 
     const printWinner = (message) => {
@@ -40,8 +46,10 @@ ${message}`,
     const winner = (player, computer) => {
       switch (true) {
         case player <= 0:
+          result.computer = 10;
           return printWinner('Вы проиграли!');
         case computer <= 0:
+          result.player = 10;
           return printWinner('Вы выиграли!');
       }
     };
@@ -54,7 +62,7 @@ ${message}`,
       }
       alert(`Количество шариков у вас: ${result.totalPlayer}
 Количество шариков у бота: ${result.totalComputer}`);
-      const user = prompt(`Загадывайте число от 0 до ${result.totalPlayer}`);
+      const user = prompt(`Загадывайте число от 1 до ${result.totalPlayer}`);
       const bot = getRandomIntInclusive(0, 1);
 
       switch (true) {
