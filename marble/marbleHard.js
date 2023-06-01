@@ -150,7 +150,6 @@ ${message}`,
 
         switch (true) {
           case +user % 2 === bot:
-          case result.totalPlayer === 1:
             alert('Бот Угадал');
             result.totalComputer = +user;
             result.totalPlayer = -user;
