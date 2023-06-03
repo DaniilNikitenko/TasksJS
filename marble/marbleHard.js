@@ -40,12 +40,9 @@
     };
 
     const printWinner = (message) => {
-      const playerBalls = Math.max(result.totalPlayer, 0);
-      const computerBalls = Math.max(result.totalComputer, 0);
-
       alert(
-          `Игрок ${playerBalls} шариков
-Бот ${computerBalls} шариков
+          `Игрок ${result.totalPlayer} шариков
+Бот ${result.totalComputer} шариков
 ${message}`,
       );
     };
@@ -60,12 +57,24 @@ ${message}`,
           result.player = 10;
           result.computer = 0;
           return printWinner('Вы выиграли!');
+        default:
+          return printWinner('Игра продолжается!');
       }
     };
 
     const print = (player, computer) => {
-      alert(`Количество шариков у вас: ${player}
-Количество шариков у бота: ${computer}`);
+      switch (true) {
+        case player <= 0:
+          result.computer = 10;
+          result.player = 0;
+          return printWinner('Вы проиграли!');
+        case computer <= 0:
+          result.player = 10;
+          result.computer = 0;
+          return printWinner('Вы выиграли!');
+        default:
+          return printWinner('Игра продолжается!');
+      }
     };
 
     const playerOdd = () => (confirm(`Число чётное?`) ? 0 : 1);
@@ -117,7 +126,6 @@ ${message}`,
         return;
       }
       if (result.totalPlayer <= 0 || result.totalComputer <= 0) {
-        winner(result.totalPlayer, result.totalComputer);
         const playAgain = confirm('Хотите сыграть еще раз?');
         if (playAgain) {
           result.default();
@@ -126,11 +134,6 @@ ${message}`,
         } else {
           return;
         }
-      }
-
-      if (result.totalPlayer === 1) {
-        winner(result.totalPlayer, result.totalComputer);
-        return;
       }
 
       if (firstPlayer === true) {
@@ -175,13 +178,13 @@ ${message}`,
             alert('Вы угадали!');
             result.totalPlayer = +botGuess;
             result.totalComputer = -botGuess;
-            print(result.totalPlayer, result.totalComputer);
+            winner(result.totalPlayer, result.totalComputer);
             break;
           default:
             alert('Вы не угадали!');
             result.totalPlayer = -botGuess;
             result.totalComputer = +botGuess;
-            print(result.totalPlayer, result.totalComputer);
+            winner(result.totalPlayer, result.totalComputer);
         }
         firstPlayer = true;
       }
