@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+(function () {
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -34,32 +34,41 @@
     };
 
     const printWinner = (message) => {
-      const playerBalls = Math.max(result.totalPlayer, 0);
-      const computerBalls = Math.max(result.totalComputer, 0);
-
       alert(
-          `Игрок ${playerBalls} шариков
-Бот ${computerBalls} шариков
-${message}`,
+        `Игрок ${result.totalPlayer} шариков
+Бот ${result.totalComputer} шариков
+${message}`
       );
     };
 
     const winner = (player, computer) => {
       switch (true) {
-        case player <= 0:
-        case player === 1:
+        case player <= 1:
           result.computer = 10;
+          result.player = 0;
           return printWinner('Вы проиграли!');
         case computer <= 0:
-        case computer === 1:
           result.player = 10;
+          result.computer = 0;
           return printWinner('Вы выиграли!');
+        default:
+          return printWinner('Игра продолжается!');
       }
     };
 
     const print = (player, computer) => {
-      alert(`Количество шариков у вас: ${player}
-Количество шариков у бота: ${computer}`);
+      switch (true) {
+        case player <= 0:
+          result.computer = 10;
+          result.player = 0;
+          return printWinner('Вы проиграли!');
+        case computer <= 0:
+          result.player = 10;
+          result.computer = 0;
+          return printWinner('Вы выиграли!');
+        default:
+          return printWinner('Игра продолжается!');
+      }
     };
 
     const playerOdd = () => (confirm(`Число чётное?`) ? 0 : 1);
@@ -68,11 +77,9 @@ ${message}`,
       switch (true) {
         case result.totalPlayer <= 1:
         case result.totalComputer <= 0:
-          winner(result.totalPlayer, result.totalComputer);
           return;
       }
 
-      print(result.totalPlayer, result.totalComputer);
       const user = prompt(`Загадывайте число от 1 до ${result.totalPlayer}`);
       const bot = getRandomIntInclusive(0, 1);
 
@@ -109,12 +116,14 @@ ${message}`,
             alert('Вы угадали!');
             result.totalPlayer = +botGuess;
             result.totalComputer = -botGuess;
+            winner(result.totalPlayer, result.totalComputer);
             start();
             break;
           case botGuess % 2 !== playerChoice:
             alert('Вы не угадали!');
             result.totalPlayer = -botGuess;
             result.totalComputer = +botGuess;
+            winner(result.totalPlayer, result.totalComputer);
             start();
         }
       } else {
